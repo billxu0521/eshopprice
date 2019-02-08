@@ -1,0 +1,20 @@
+[[source]]
+verify_ssl = true
+url = "https://pypi.python.org/simple"
+
+[packages]
+requests = "*"
+pymongo = "*"
+beautifulsoup4 = "*"
+opencc-python-reimplemented = "*"
+lxml = "*"
+gevent = "*"
+tqdm = "*"
+simplejson = "*"
+iso639 = "*"
+fuzzywuzzy = "*"
+python-levenshtein = "*"
+unidecode = "*"
+django = "==1.11"
+pycountry = "*"
+apscheduler = "*"
