@@ -1,0 +1,63 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Author  : billxu
+# @File    : init_name_db.py
+# 更新间隔每周一次
+
+from pymongo import MongoClient
+#from opencc import OpenCC
+import requests
+from bs4 import BeautifulSoup
+import gevent
+from tqdm import tqdm
+from gevent import monkey, pool
+
+monkey.patch_all();
+
+GET_AC_GAMER_URL = "https://acg.gamer.com.tw/acgDetail.php?"
+
+# mongodb 设置
+'''
+mg_client = MongoClient(host='172.105.216.212',
+                        port=27017,
+                        username='dwk715',
+                        password='lunxian715',
+                        authSource='eshop_price')
+'''
+mg_client = MongoClient(host='127.0.0.1',
+                        port=27017,
+                        authSource='eshop_price')
+db = mg_client['eshop_price']
+game_collection = db['game']
+name_collection = db['name']
+game_jp_collection = db['jp_game']
+game_am_collection = db['am_game']
+game_eu_collection = db['eu_game']
+
+
+def getJPGame():
+    f = open('jpgamedata.txt', 'w')
+    for game_jp in game_jp_collection.find():
+        print(game_jp)
+        f.write(str(game_jp))
+    f.close()
+    
+def getAMGame():
+    f = open('amgamedata.txt', 'w')
+    for game_jp in game_am_collection.find():
+        print(game_jp)
+        f.write(str(game_jp))
+    f.close()
+    
+def getEUGame():
+    f = open('eugamedata.txt', 'w')
+    for game_jp in game_eu_collection.find():
+        print(game_jp)
+        f.write(str(game_jp))
+    f.close()
+
+if __name__ == '__main__':
+    getJPGame()
+    getAMGame() 
+    getEUGame()
+    
